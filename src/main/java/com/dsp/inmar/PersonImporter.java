@@ -37,7 +37,7 @@ public class PersonImporter {
     /*
      * read CSV file
      */
-    private static void readCSVFile(String path) {
+    public static void readCSVFile(String path) {
         String line = null;
         PersonPublisher publisher;
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -48,6 +48,8 @@ public class PersonImporter {
                 p.setFirstName(row[0]);
                 p.setLastName(row[1]);
                 publisher.publishMessage(p);
+
+
             }
         } catch (IOException e) {
             throw new InMarClientException(e.getMessage());
@@ -57,7 +59,7 @@ public class PersonImporter {
     /*
      * read JSON file
      */
-    private static void readJSONFile(String file) {
+    public static void readJSONFile(String file) {
         PersonPublisher publisher = new PersonPublisher();
         JSONParser jsonParser = new JSONParser();
         Object object = null;
@@ -73,6 +75,7 @@ public class PersonImporter {
                 p.setFirstName((String) personJSONObj.get("firstName"));
                 p.setLastName((String) personJSONObj.get("lastName"));
                 publisher.publishMessage(p);
+
             }
         } catch (IOException | ParseException e) {
             throw new InMarClientException(e.getMessage());
