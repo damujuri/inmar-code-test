@@ -5,7 +5,7 @@ Steps to run
 2. Open run configuration for the main java class file (PersonImporter) and provide input from command line argument. i.e ./files/input.csv or input.json or input.txt as per your choice
 3. Finnaly run java main class.
 
-Positive scenario:
+Positive scenario
 List ofpPersons information as per the file, will be displayed in consoole like below example
 FirstName : Deva, Last Nme:  Amujuri
 FirstName : Chandara, Last Nme:  Muvvala
