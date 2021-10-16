@@ -8,7 +8,9 @@ Steps to run
 
 Positive scenario
 
-List ofpPersons information as per the file, will be displayed in consoole like below example
+As per the file data list of persons information will be displayed in console. 
+Example
+
 FirstName : Deva, Last Nme:  Amujuri
 FirstName : Chandara, Last Nme:  Muvvala
 FirstName : Siva, Last Nme:  Prasad
