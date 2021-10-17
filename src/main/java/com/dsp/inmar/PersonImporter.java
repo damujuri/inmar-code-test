@@ -67,8 +67,8 @@ public class PersonImporter {
             JSONObject personObj = (JSONObject) object;
             Person p = null;
             JSONArray personArray = (JSONArray) personObj.get("persons");
-            for (int i = 0; i < personArray.size(); i++) {
-                JSONObject personJSONObj = (JSONObject) personArray.get(i);
+            for (Object o : personArray) {
+                JSONObject personJSONObj = (JSONObject) o;
                 p = new Person();
                 p.setFirstName((String) personJSONObj.get("firstName"));
                 p.setLastName((String) personJSONObj.get("lastName"));
