@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class PersonImporter {
     public static void main(String[] args) {
-        File file = null;
+        File file;
         //get the file from command line argument
         if (args.length == 1) {
             file = new File(args[0]);
@@ -38,7 +38,7 @@ public class PersonImporter {
      * read CSV file
      */
     public static void readCSVFile(String path) {
-        String line = null;
+        String line;
         PersonPublisher publisher;
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             while ((line = br.readLine()) != null) {
@@ -62,15 +62,15 @@ public class PersonImporter {
     public static void readJSONFile(String file) {
         PersonPublisher publisher = new PersonPublisher();
         JSONParser jsonParser = new JSONParser();
-        Object object = null;
+        Object object;
 
         try (FileReader fileReader = new FileReader(file)) {
             object = jsonParser.parse(fileReader);
             JSONObject personObj = (JSONObject) object;
-            Person p = null;
+            Person p;
             JSONArray personArray = (JSONArray) personObj.get("persons");
-            for (int i = 0; i < personArray.size(); i++) {
-                JSONObject personJSONObj = (JSONObject) personArray.get(i);
+            for (Object o : personArray) {
+                JSONObject personJSONObj = (JSONObject) o;
                 p = new Person();
                 p.setFirstName((String) personJSONObj.get("firstName"));
                 p.setLastName((String) personJSONObj.get("lastName"));
