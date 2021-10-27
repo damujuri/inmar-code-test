@@ -17,25 +17,24 @@ import java.util.UUID;
 
 public class PersonImporter {
     public static void main(String[] args) {
-        File file;
         //get the file from command line argument
-        if (args.length == 1) {
-            file = new File(args[0]);
-            String path = file.getAbsolutePath();
-            String fileType = FilenameUtils.getExtension(path);
-            if (InMarConstants.JSON.equals(fileType)) {
-                //read JSON file
-                readJSONFile(path);
-
-            } else if (InMarConstants.CSV.equals(fileType) || InMarConstants.TXT.equals(fileType)) {
-                //Read the file either csv, txt
-                readCSVFile(path);
-
-            } else {
-                throw new InMarClientException("Invalid file format");
-            }
+        if (args.length == 0) {
+            throw new InMarClientException("No file select; please provide file name");
+        } else if (args.length > 2) {
+            throw new InMarClientException("Invalid arguments. It should accept only parameter as file path");
         } else {
-            throw new InMarClientException("File not found Exception");
+            File file = new File(args[0]);
+            if (file.exists()) {
+                String path = file.getAbsolutePath();
+                String fileType = FilenameUtils.getExtension(path);
+                switch (fileType) {
+                    case InMarConstants.JSON -> readJSONFile(path);
+                    case InMarConstants.CSV, InMarConstants.TXT -> readCSVFile(path);
+                    default -> throw new InMarClientException("Invalid file format");
+                }
+            } else {
+                throw new InMarClientException("Invalid File");
+            }
         }
     }
 
